@@ -5,19 +5,17 @@ import java.util.ArrayList;
 public class ClientDAO {
 	
 	private ArrayList<Client> cList;
-	private Util util;
 	private int cnt;
 	private int maxNo;
 
 	public ClientDAO() {
-		util = new Util();
 		cList = new ArrayList<Client>();
 	}
 	
 	public void deleteOneClient(AccountDAO aDAO, String id) {
 		while(true) {
 			Client c = checkId(id);
-			String pw = util.getStringValue("비밀번호");
+			String pw = Util.getStringValue("비밀번호");
 			if(!c.getPw().equals(pw)) {
 				System.err.println("비밀번호 불일치");
 				continue;
@@ -32,13 +30,13 @@ public class ClientDAO {
 	
 	public String login(AccountDAO aDAO) {
 		while(true) {
-			String id = util.getStringValue("아이디");
+			String id = Util.getStringValue("아이디");
 			Client c = checkId(id);
 			if(c==null) {
 				System.err.println("존재하지 않는 아이디");
 				continue;
 			}
-			String pw = util.getStringValue("비밀번호");
+			String pw = Util.getStringValue("비밀번호");
 			if(!c.getPw().equals(pw)) {
 				System.err.println("비밀번호 불일치");
 				continue;
@@ -49,14 +47,14 @@ public class ClientDAO {
 	}
 	public void joinClient() {
 		while(true) {
-			String id = util.getStringValue("아이디");
+			String id = Util.getStringValue("아이디");
 			Client c = checkId(id);
 			if(c!=null) {
 				System.err.println("중복된 아이디가 존재함.");
 				continue;
 			}
-			String pw = util.getStringValue("비밀번호");
-			String name = util.getStringValue("이름");
+			String pw = Util.getStringValue("비밀번호");
+			String name = Util.getStringValue("이름");
 			
 			cList.add(new Client(maxNo++, id, pw, name));
 			cnt+=1;
@@ -66,7 +64,7 @@ public class ClientDAO {
 	
 	public void printClient() {
 		if(cnt==0) {
-			util.printNoData();
+			Util.printNoData();
 			return;
 		}
 		System.out.println("=============================");
@@ -96,18 +94,18 @@ public class ClientDAO {
 	}
  	public void modifyClient() {
  		if(cnt == 0) {
- 			util.printNoData();
+ 			Util.printNoData();
  			return;
  		}
-		String id = util.getStringValue("아이디");
+		String id = Util.getStringValue("아이디");
 		Client c = checkId(id);
 		if(c==null) {
 			System.err.println("존재하지 않는 아이디");
 			return;
 		}
-		String name = util.getStringValue("[수정] 이름");
+		String name = Util.getStringValue("[수정] 이름");
 		while(true) {
-			String pw = util.getStringValue("[수정] 비밀번호");
+			String pw = Util.getStringValue("[수정] 비밀번호");
 			if(c.getPw().equals(pw)) {
 				System.err.println("동일한 비밀번호로 수정 불가능");
 				continue;
@@ -122,10 +120,10 @@ public class ClientDAO {
 	
  	public void deleteClient() {
  		if(cnt==0) {
- 			util.printNoData();
+ 			Util.printNoData();
  			return;
  		}
- 		String id = util.getStringValue("아이디");
+ 		String id = Util.getStringValue("아이디");
 		Client c = checkId(id);
 		if(c==null) {
 			System.err.println("존재하지 않는 아이디");

@@ -5,15 +5,13 @@ public class BankController {
 	private final String bankName = "한국은행";
 	private ClientDAO cDAO;
 	private AccountDAO aDAO;
-	private Util util;
 	private String log;
 	
 	private void init() {
 		cDAO = new ClientDAO();
 		aDAO = new AccountDAO();
-		util = new Util();
-		//util.tempData(aDAO,cDAO);
-		util.loadTofile(aDAO, cDAO);
+		//Util.tempData(aDAO,cDAO);
+		Util.loadTofile(aDAO, cDAO);
 	}
 	
 	private void MainMenu() {
@@ -37,11 +35,11 @@ public class BankController {
 		while(true) {
 			System.out.println("====[ "+bankName+" ATM ]====");
 			MainMenu();
-			int sel = util.getIntValue("메뉴", 0, 2);
+			int sel = Util.getIntValue("메뉴", 0, 2);
 			if(sel == 1) {
 				while(true) {
 					adminMenu();
-					sel = util.getIntValue("메뉴", 0, 6);
+					sel = Util.getIntValue("메뉴", 0, 6);
 					if(sel == 1) {
 						System.out.println("[ 회원 목록 ]");
 						cDAO.printClient();
@@ -53,10 +51,10 @@ public class BankController {
 						cDAO.deleteClient();
 					} else if(sel == 4) {
 						System.out.println("[ 데이터 저장 ]");
-						util.saveTofile(aDAO, cDAO);
+						Util.saveTofile(aDAO, cDAO);
 					} else if(sel == 5) {
 						System.out.println("[ 데이터 불러오기 ]");
-						util.loadTofile(aDAO, cDAO);
+						Util.loadTofile(aDAO, cDAO);
 					} else if(sel == 6) {
 						System.out.println("[ 전체 계좌 목록 ]");
 						aDAO.printAllAccount();
@@ -68,7 +66,7 @@ public class BankController {
 				while(true) {
 					if(log==null) {
 						userMenu();
-						sel=util.getIntValue("메뉴", 0, 2);
+						sel=Util.getIntValue("메뉴", 0, 2);
 						if (sel == 1) {
 							System.out.println("[ 회원 가입 ]");
 							cDAO.joinClient();
@@ -81,7 +79,7 @@ public class BankController {
 					}else if(log!=null) {
 						System.out.printf("[ %s 님 로그인 ]\n",log);
 						loginMenu();
-						sel=util.getIntValue("메뉴", 0, 7);
+						sel=Util.getIntValue("메뉴", 0, 7);
 						if (sel == 1) {
 							System.out.println("[ 계좌 추가 ]");
 							

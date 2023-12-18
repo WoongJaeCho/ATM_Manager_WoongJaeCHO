@@ -7,30 +7,30 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Util {
-	private final String CUR_PATH ;//= System.getProperty("user.dir")+"/src/ATM/";
-	private Scanner scan;
+	private static final String CUR_PATH = System.getProperty("user.dir")+"\\src\\"+new Util().getClass().getPackageName()+"\\";
+	private static Scanner scan = new Scanner(System.in);
 	
-	Util(){
-		scan = new Scanner(System.in);
-		//CUR_PATH = System.getProperty("user.dir")+"/src/"+getClass().getPackageName()+"/";
-		CUR_PATH = System.getProperty("user.dir")+"\\src\\"+getClass().getPackageName()+"\\";
+	private static Util instance = new Util();
+	
+	public static Util getInstance(){
+		return instance;
 	}
 	
 	void init() {
 	}
 	
-	public void printNoData() {
+	public static void printNoData() {
 		System.err.println("[ no Client Data ]");
 	}
 	
-	public String getStringValue(String msg) {
+	public static String getStringValue(String msg) {
 		System.out.printf("%s 입력 : ",msg);
 		String input = scan.next();
 		
 		return input;
 	}
 	
-	public int getIntValue(String msg, int start, int end) {
+	public static int getIntValue(String msg, int start, int end) {
 		while(true) {
 			try {
 				System.out.printf("%s 입력 (%d-%d) : ",msg,start,end);
@@ -50,7 +50,7 @@ public class Util {
 	
 	// account.txt , client.txt
 	
-	public void tempData(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void tempData(AccountDAO aDAO, ClientDAO cDAO) {
 		String userdata = "1001/test01/1111/김철수\n";
 		userdata += "1002/test02/2222/이영희\n";
 		userdata += "1003/test03/3333/신민수\n";
@@ -69,7 +69,7 @@ public class Util {
 		saveDataToFile("client.txt", userdata);
 	}
 	
-	private void saveDataToFile(String fileName,String data) {
+	private static void saveDataToFile(String fileName,String data) {
 		try (FileWriter fw = new FileWriter(CUR_PATH+fileName)){
 			fw.write(data);
 			System.out.println(fileName+" 파일 저장 완료");
@@ -79,14 +79,14 @@ public class Util {
 		
 	}
 	
-	public void saveTofile(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void saveTofile(AccountDAO aDAO, ClientDAO cDAO) {
 		String aData = aDAO.saveToData();
 		String cData = cDAO.saveToData();
 		saveDataToFile("account.txt", aData);
 		saveDataToFile("client.txt", cData);
 	}
 	
-	private String loadFileToData(String fileName) {
+	private static String loadFileToData(String fileName) {
 		try(FileReader fr = new FileReader(CUR_PATH+fileName);
 				BufferedReader br = new BufferedReader(fr);){
 			String data = "";
@@ -104,7 +104,7 @@ public class Util {
 		}
 	}
 	
-	public void loadTofile(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void loadTofile(AccountDAO aDAO, ClientDAO cDAO) {
 		String aData = loadFileToData("account.txt");
 		String cData = loadFileToData("client.txt");
 		aDAO.loasToData(aData);

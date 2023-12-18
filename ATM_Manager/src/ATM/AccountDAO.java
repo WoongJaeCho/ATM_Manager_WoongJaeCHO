@@ -24,7 +24,7 @@ public class AccountDAO {
 	
 	public void printMyPage(String id) {
 		if(cnt==0) {
-			util.printNoData();
+			Util.printNoData();
 			return;
 		}
 		System.out.println("=============================");
@@ -40,7 +40,7 @@ public class AccountDAO {
 	
 	public void printAllAccount() {
 		if(cnt==0) {
-			util.printNoData();
+			Util.printNoData();
 			return;
 		}
 		System.out.println("=============================");
