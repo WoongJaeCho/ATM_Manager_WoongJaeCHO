@@ -12,7 +12,8 @@ public class Util {
 	
 	Util(){
 		scan = new Scanner(System.in);
-		CUR_PATH = System.getProperty("user.dir")+"/src/"+getClass().getPackageName()+"/";
+		//CUR_PATH = System.getProperty("user.dir")+"/src/"+getClass().getPackageName()+"/";
+		CUR_PATH = System.getProperty("user.dir")+"\\src\\"+getClass().getPackageName()+"\\";
 	}
 	
 	void init() {
