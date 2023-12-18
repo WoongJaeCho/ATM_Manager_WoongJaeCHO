@@ -158,7 +158,7 @@ public class ClientDAO {
 		
 		for(int i =0 ; i<temp.length;i+=1 ) {
 			String[] info = temp[i].split("/");
-			
+			info[2] = info[2].substring(0, info[2].length()-1);
 			Client c = new Client(Integer.parseInt(info[0]), info[1], info[2], info[3]);
 			cList.add(c);
 		}

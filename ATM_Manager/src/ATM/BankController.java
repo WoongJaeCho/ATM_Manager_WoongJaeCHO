@@ -11,7 +11,7 @@ public class BankController {
 		cDAO = new ClientDAO();
 		aDAO = new AccountDAO();
 		//Util.tempData(aDAO,cDAO);
-		Util.loadTofile(aDAO, cDAO);
+		//Util.loadTofile(aDAO, cDAO);
 	}
 	
 	private void MainMenu() {
@@ -82,19 +82,19 @@ public class BankController {
 						sel=Util.getIntValue("메뉴", 0, 7);
 						if (sel == 1) {
 							System.out.println("[ 계좌 추가 ]");
-							
+							aDAO.addAccount(log);
 						}else if(sel == 2) {
 							System.out.println("[ 계좌 삭제 ]");
-							
+							aDAO.deleteAccount(log);
 						}else if(sel == 3) {
 							System.out.println("[ 입   금 ]");
-							
+							aDAO.depositAccount(log);
 						}else if(sel == 4) {
 							System.out.println("[ 출   금 ]");
-							
+							aDAO.withdrawAccount(log);
 						}else if(sel == 5) {
 							System.out.println("[ 이   체 ]");
-							
+							aDAO.transferAccount(log);
 						}else if(sel == 6) {
 							System.out.println("[ 탈   퇴 ]");
 							cDAO.deleteOneClient(aDAO, log);

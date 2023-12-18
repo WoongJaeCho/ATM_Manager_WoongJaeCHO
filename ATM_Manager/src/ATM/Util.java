@@ -31,6 +31,24 @@ public class Util {
 		return input;
 	}
 	
+	public static int getIntValue(String msg, int start) {
+		while(true) {
+			try {
+				System.out.printf("%s 입력: ",msg);
+				int input = scan.nextInt();
+				if(input<start) {
+					System.out.println("양수 값 입력할 것.");
+					continue;
+				}
+				return input;
+			} catch (Exception e) {
+				System.out.println("정수 값 입력할 것.");
+			} finally {
+				scan.nextLine();
+			}
+		}
+	}
+	
 	public static int getIntValue(String msg, int start, int end) {
 		while(true) {
 			try {
